@@ -41,18 +41,18 @@
   <div id="signin" class="container p-5">
     <h2>Inicio de sesión</h2><br>    
     <div class="login">    
-    <form method="post" action="index.html" id="login" >    
+    <form action="index.html" method="GET" id="login" >    
         <label><b>Usuario     
         </b>    
         </label>    
-        <input type="text" name="Uname" id="Uname" placeholder="Ingrese su usuario">    
+        <input type="text" name="Uname" id="Uname" placeholder="Ingrese su usuario" required>    
         <br><br>    
         <label><b>Contraseña     
         </b>    
         </label>    
-        <input type="Password" name="Pass" id="Pass" placeholder="Ingrese su contraseña">    
+        <input type="Password" name="Pass" id="Pass" placeholder="Ingrese su contraseña" required>    
         <br><br>    
-        <input type="button" name="log" id="log" value="Iniciar Sesión">       
+        <input type="submit" name="log" id="log" value="Iniciar Sesión">       
         <br><br>    
         <input type="checkbox" id="check">    
         <span>Recordar usuario</span>    
