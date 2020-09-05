@@ -46,8 +46,8 @@ function showProductsList(){
         if (((minCount == undefined) || (minCount != undefined && parseInt(category.cost) >= minCount)) &&
             ((maxCount == undefined) || (maxCount != undefined && parseInt(category.cost) <= maxCount))){
 
-        htmlContentToAppend += `
-        <div class="list-group-item list-group-item-action">
+        htmlContentToAppend += `<a href="product-info.html" class="list-group-item list-group-item-action">
+        <div class="list-group-item list-group-item-action" id="redir">
             <div id="busq" class="row">
                 <div class="col-3">
                     <img src="` + category.imgSrc + `" alt="` + category.description + `" class="img-thumbnail">
@@ -65,7 +65,7 @@ function showProductsList(){
                 
             </div>
             
-        </div>
+        </div></a>
         `
             }
 
@@ -212,8 +212,8 @@ function mostrar(){
         
         if (nombre.includes(texto) || desc.includes(texto) ){
 
-        htmlContentToAppend += `
-        <div class="list-group-item list-group-item-action">
+        htmlContentToAppend += `<a href="product-info.html">
+        <div class="list-group-item list-group-item-action" id="redir">
             <div id="busq" class="row">
                 <div class="col-3">
                     <img src="` + products.imgSrc + `" alt="` + products.description + `" class="img-thumbnail">
@@ -231,7 +231,7 @@ function mostrar(){
                 
             </div>
             
-        </div>
+        </div></a>
         `
             }
 
