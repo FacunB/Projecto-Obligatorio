@@ -62,7 +62,10 @@ function showComments(){
 
         document.getElementById("contenidocomentario").innerHTML = htmlContentToAppend;
     }
-//Función que se ejecuta una vez que se haya lanzado el evento de
+
+   
+
+    //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
@@ -141,3 +144,46 @@ document.addEventListener("DOMContentLoaded", function(e){
     });
 
 });
+
+
+const form = document.getElementById("commentbox");
+    
+ form.addEventListener("submit", function(event){
+      event.preventDefault();
+
+    
+    var rating = document.getElementById("estrellas").value;
+    var contenido = document.getElementById("contenido").value;
+    var comentador = JSON.parse(localStorage.getItem('user'))[0].usuario;
+    var currentdate = new Date(); 
+    var datetime =   currentdate.getFullYear() + "-"
+                    + (currentdate.getMonth()+1)  + "-" 
+                    + currentdate.getDate() + " @ "  
+                    + currentdate.getHours() + ":"  
+                    + currentdate.getMinutes() + ":" 
+                    + currentdate.getSeconds();
+
+    localStorage.setItem('rating', rating)
+    localStorage.setItem('contenido', contenido)
+    localStorage.setItem('datetime', datetime)
+    
+    commentsArray.push({score: rating, description: contenido, user: comentador, dateTime: datetime});
+    showComments();   
+document.getElementById("contenido").value = "";
+document.getElementById("estrellas").value = "5";
+
+});
+
+/*
+    var rating = document.getElementById("estrellas").value;
+    var contenido = document.getElementById("contenido").value;
+    var usuario = JSON.parse(localStorage.getItem('user'));
+    var currentdate = new Date(); 
+    var datetime =   currentdate.getFullYear() + "-"
+                    + (currentdate.getMonth()+1)  + "-" 
+                    + currentdate.getDate() + " @ "  
+                    + currentdate.getHours() + ":"  
+                    + currentdate.getMinutes() + ":" 
+                    + currentdate.getSeconds();
+
+*/

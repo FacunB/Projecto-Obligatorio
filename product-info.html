@@ -81,9 +81,26 @@
         <dd>
           <p id="comentarios"></p>
         </dd>
-
         <div id="contenidocomentario"></div>
-      
+
+        <dt>Agregar Comentario</dt>
+        <dd>
+          <p id="nuevoComentario"></p>
+          <form id="commentbox" >
+            <textarea rows="4" cols="50" id="contenido" form="usrform" class="textbox" placeholder="Deje su comentario"></textarea> <br>
+              <span>Puntuacion</span>
+              <select name="Puntuacion" id="estrellas"> 
+                <option value="5">5</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1</option>
+              </select>
+              <input type="submit" value="Enviar" >
+          </form>
+        </dd>
+
+              
     </div>
   </main>
   <footer class="text-muted">
