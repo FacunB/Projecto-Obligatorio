@@ -6,6 +6,7 @@ const PRODUCT_INFO_URL = "https://japdevdep.github.io/ecommerce-api/product/5678
 const PRODUCT_INFO_COMMENTS_URL = "https://japdevdep.github.io/ecommerce-api/product/5678-comments.json";
 const CART_INFO_URL = "https://japdevdep.github.io/ecommerce-api/cart/987.json";
 const CART_BUY_URL = "https://japdevdep.github.io/ecommerce-api/cart/buy.json";
+const CART_DESAFIO_URL = "https://japdevdep.github.io/ecommerce-api/cart/654.json"
 
 var showSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "block";
@@ -39,6 +40,33 @@ var getJSONData = function(url){
         return result;
     });
 }
+
+const usernav = document.getElementById('usuario');
+//const close = document.getElementById('cerrar');
+
+let username = JSON.parse(localStorage.getItem('user'));
+
+if (username != null){
+    usernav.innerHTML = `<div class="dropdown">
+    <button id="usuario" class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    `+username[0].usuario +`
+    </button>
+  
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+      <a class="dropdown-item" href="cart.html">Ver mi carrito</a>
+      <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
+      <div class="dropdown-divider"></div>
+      <a id="cerrar" class="dropdown-item" href="#">Cerrar sesión</a>
+    </div>
+  </div>`;
+} else {
+    usernav.innerHTML = '<a href="index.html" id="usuario">Iniciar sesión</a>';
+}
+const close = document.getElementById('cerrar');
+close.addEventListener('click', function(){
+    localStorage.clear('user');
+    location.href='index.html';
+});
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los

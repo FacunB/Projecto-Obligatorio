@@ -6,19 +6,39 @@ var relacionadosArray=[];
 function showImagesGallery(array){
 
     let htmlContentToAppend = "";
+    let htmlContent ="";
 
     for(let i = 0; i < array.length; i++){
         let imageSrc = array[i];
 
-        htmlContentToAppend += `
+       /* htmlContentToAppend += `
         <div class="col-lg-3 col-md-4 col-6">
             <div class="d-block mb-4 h-100">
                 <img class="img-fluid img-thumbnail" src="` + imageSrc + `" alt="">
             </div>
         </div>
         `
+*/
+        if(i == 0){
+            htmlContent += `<li data-target="#carouselExampleIndicators" data-slide-to="`+ i +`" active></li>`
+            htmlContentToAppend +=` 
+        <div class="carousel-item active">
+            <img src="` + imageSrc + `" class="d-block w-100" alt="...">            
+        </div>`
 
+        } else {
+            htmlContent +=`<li data-target="#carouselExampleIndicators" data-slide-to="`+ i +`" ></li>`
+
+            htmlContentToAppend+= `
+        <div class="carousel-item" >
+            <img src="` + imageSrc + `" class="d-block w-100" alt="...">            
+        </div>`
+
+        }
+
+        
         document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
+        document.getElementById("carousel").innerHTML = htmlContent;
     }
 }
 
@@ -174,16 +194,3 @@ document.getElementById("estrellas").value = "5";
 
 });
 
-/*
-    var rating = document.getElementById("estrellas").value;
-    var contenido = document.getElementById("contenido").value;
-    var usuario = JSON.parse(localStorage.getItem('user'));
-    var currentdate = new Date(); 
-    var datetime =   currentdate.getFullYear() + "-"
-                    + (currentdate.getMonth()+1)  + "-" 
-                    + currentdate.getDate() + " @ "  
-                    + currentdate.getHours() + ":"  
-                    + currentdate.getMinutes() + ":" 
-                    + currentdate.getSeconds();
-
-*/
