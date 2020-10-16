@@ -50,48 +50,151 @@
     <div class="col-md-8 order-md-1">
       <h4 class="mb-3">Articulos a comprar</h4>
       <hr>
-      <table id="tabla" style="width:100%">
-        <tr>
-          <th>Vista previa</th>
-          <th>Nombre</th>
-          <th>Costo</th>
-          <th>Cantidad</th>
-          <th>Subtotal</th>
-        </tr>
+
+      <table style="width:100%">
+        <thead>
+          <tr>
+            <th>Vista previa</th>
+            <th>Nombre</th>
+            <th>Costo</th>
+            <th>Cantidad</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+        <tbody id="tabla">
+        </tbody>
       </table>
       <hr>
       <h4 class="mb-3">Tipo de envío</h4>
       <div id="envios">
-        <input type="radio" id="15" name="descuento" value="15">
+        <input type="radio" id="15" name="costoenvio" value="15" checked>
         <label for="15">Premium de 2 a 5 días (15%)</label><br>
-        <input type="radio" id="7" name="descuento" value="7">
+        <input type="radio" id="7" name="costoenvio" value="7">
         <label for="7">Express de 5 a 8 días (7%)</label><br>
-        <input type="radio" id="5" name="descuento" value="5">
+        <input type="radio" id="5" name="costoenvio" value="5">
         <label for="5">Standard de 12 a 15 días (5%)</label><br>
       </div>
-      <div id="direccion">
-        <h4 class="mb-3">Dirección de envío</h4>
-        <div class="row">
-          <div class="col-md-3 mb-3">
-            <label for="zip">Calle</label>
-            <input type="text" class="form-control" id="calle" placeholder="">
-          </div>
-          <div class="col-md-2 mb-3">
-              <label for="state">Número</label>
-              <input type="number" class="form-control" id="numerodecalle">              
+
+      <form class="needs-validation" id="buy-info">
+        <div id="direccion">
+          <h4 class="mb-3">Dirección de envío</h4>
+          <div class="row">
+            <div class="col-md-3 mb-3">
+              <label for="zip">Calle</label>
+              <input type="text" class="form-control" id="calle" placeholder="Calle Falsa" required>
             </div>
+            <div class="col-md-2 mb-3">
+              <label for="state">Número</label>
+              <input type="number" class="form-control" id="numerodecalle" placeholder="1234" required>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3 mb-3">
+              <label for="state">Esquina</label>
+              <input type="text" class="form-control" id="esquina" placeholder="Fantasía" required>
+            </div>
+          </div>
+          <hr>
         </div>
-        <div class="row">
-          <div class="col-md-3 mb-3">
-          <label for="state">Esquina</label>
-          <input type="text" class="form-control" id="esquina" placeholder="">
+
+        <h4 class="mb-3">Costos</h4>
+        <ul class="list-group mb-3">
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <div>
+              <h6 class="my-0">Subtotal</h6>
+              <small class="text-muted">Costo unitario del producto por cantidad</small>
+            </div>
+            <div><span id="moneda" style="justify-content: left;"></span> <span class="text-muted"
+                id="subtotal">-</span></div>
+          </li>
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <div>
+              <h6 class="my-0">Coste de envío</h6>
+              <small class="text-muted">Según el tipo de envío</small>
+            </div>
+            <span class="text-muted" id="costoenvio">-</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span>Total (UYU)</span>
+            <strong id="costototal">-</strong>
+          </li>
+        </ul><br>
+        <!--- <label for="pago">Elija un metodo de pago</label>
+        <select name="pago" id="pago">
+          <option value="tarjeta">Tarjeta de credito</option>
+          <option value="transferencia">Transferencia bancaria</option>
+        </select>-->
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+          Elija un metodo de pago
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+          aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Elija su metodo de pago</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+
+                <label for="tarjetaso">
+                  <input type="radio" name="pago" id="tarjetaso" value="opt1" checked> Datos de tarjeta de credito:
+                </label>
+                <div>
+                  <div class="row">
+                    <div class=".col-md-6 .ml-auto">
+                      <label for="zip">Numero de tarjeta</label>
+                      <input type="" class="form-control" id="cardnum" placeholder="" required>
+                    </div>
+                    <div class=".col-md-6 .ml-auto">
+                      <label for="state">Código de seg.</label>
+                      <input type="number" class="form-control" id="securitycode" placeholder="" required>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class=".col-md-6 .ml-auto">
+                      <label for="state">Vencimiento (MM/AA)</label>
+                      <input type="text" class="form-control" id="vencimiento" placeholder="" required>
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <hr>
+                <label for="transfer">
+                  <input type="radio" name="pago" id="transfer" value="opt2">Transferencia Bancaria
+                </label>
+                <label for="state">Número de cuenta
+                  <input class=".col-md-6 .ml-auto" type="text">
+                </label>
+
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Seleccionar</button>
+              </div>
+            </div>
+          </div>
         </div>
-      </div><hr>
-      </div>
+        <input type="submit" value="Comprar">
+      </form>
     </div>
   </div>
-  
-  
+
+  <footer class="text-muted">
+    <div class="container">
+      <p class="float-right">
+        <a href="#">Volver arriba</a>
+      </p>
+      <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
+      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+    </div>
+  </footer>
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
