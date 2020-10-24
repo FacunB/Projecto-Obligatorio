@@ -81,17 +81,20 @@
           <div class="row">
             <div class="col-md-3 mb-3">
               <label for="zip">Calle</label>
-              <input type="text" class="form-control" id="calle" placeholder="Calle Falsa" required>
+              <input type="text" name="calle" class="form-control" id="calle" placeholder="Calle Falsa">
+              <p hidden id="ocultarCalle">Complete este campo</p>
             </div>
             <div class="col-md-2 mb-3">
               <label for="state">Número</label>
-              <input type="number" class="form-control" id="numerodecalle" placeholder="1234" required>
+              <input type="number" name="numero" class="form-control" id="numerodecalle" placeholder="1234">
+              <p hidden id="ocultarNumero">Complete este campo</p>
             </div>
           </div>
           <div class="row">
             <div class="col-md-3 mb-3">
               <label for="state">Esquina</label>
-              <input type="text" class="form-control" id="esquina" placeholder="Fantasía" required>
+              <input type="text" name="esquina" class="form-control" id="esquina" placeholder="Fantasía">
+              <p hidden id="ocultarEsquina">Complete este campo</p>
             </div>
           </div>
           <hr>
@@ -128,6 +131,7 @@
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
           Elija un metodo de pago
         </button>
+        <p hidden id="ocultarPago">Seleccione un metodo de pago pls</p>
 
         <!-- Modal -->
         <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
@@ -141,42 +145,42 @@
                 </button>
               </div>
               <div class="modal-body">
-
+                <div id="mododepago"></div>
                 <label for="tarjetaso">
                   <input type="radio" name="pago" id="tarjetaso" value="opt1" checked> Datos de tarjeta de credito:
                 </label>
-                <div>
-                  <div class="row">
+                <div >
+                  <div >
                     <div class=".col-md-6 .ml-auto">
                       <label for="zip">Numero de tarjeta</label>
-                      <input type="" class="form-control" id="cardnum" placeholder="" required>
+                      <input type="" class="form-control" id="cardnum" placeholder="">
                     </div>
                     <div class=".col-md-6 .ml-auto">
                       <label for="state">Código de seg.</label>
-                      <input type="number" class="form-control" id="securitycode" placeholder="" required>
+                      <input type="number" class="form-control" id="securitycode" placeholder="">
                     </div>
                   </div>
-                  <div class="row">
+                  <div>
                     <div class=".col-md-6 .ml-auto">
                       <label for="state">Vencimiento (MM/AA)</label>
-                      <input type="text" class="form-control" id="vencimiento" placeholder="" required>
+                      <input type="text" class="form-control" id="vencimiento" placeholder="">
                     </div>
                   </div>
                 </div>
                 <br>
                 <hr>
-                <label for="transfer">
-                  <input type="radio" name="pago" id="transfer" value="opt2">Transferencia Bancaria
-                </label>
-                <label for="state">Número de cuenta
-                  <input class=".col-md-6 .ml-auto" type="text">
-                </label>
-
+                <div>
+                  <label for="transfer">
+                    <input type="radio" name="pago" id="transfer" value="opt2" >Transferencia Bancaria
+                  </label>
+                  <label for="state">Número de cuenta
+                    <input class=".col-md-6 .ml-auto" type="text" id="numeroCuenta">
+                  </label>
+                </div>
 
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Seleccionar</button>
+              <div class="modal-footer">                
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="checkMethod()">Seleccionar</button>
               </div>
             </div>
           </div>
@@ -195,6 +199,14 @@
       <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
     </div>
   </footer>
+
+  <div class="alert fade" role="alert" id="alertResult">
+    <span id="resultSpan"></span>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>

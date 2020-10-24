@@ -1,5 +1,6 @@
 let moneda = "UYU";
 let porcentajeEnvio = 0.15;
+let metodoDePago = false;
 
 function updateTotalCosts() {
     let unitProductCostHTML = document.getElementById("productCostText");
@@ -13,6 +14,24 @@ function updateTotalCosts() {
     unitProductCostHTML.innerHTML = unitCostToShow;
     comissionCostHTML.innerHTML = comissionToShow;
     totalCostHTML.innerHTML = totalCostToShow;
+}
+
+//Funcion para ver si los metodos de pago estan piola
+function checkMethod() {
+    let numerotarjeta = document.getElementById("cardnum").value;
+    let codigoTarjeta = document.getElementById("securitycode").value;
+    let vencimientoTarjeta = document.getElementById("vencimiento").value;
+    let numerodeCuenta = document.getElementById("numeroCuenta").value;
+
+    if ((numerotarjeta && codigoTarjeta && vencimientoTarjeta) !== "") {
+        metodoDePago = true;
+    } else {
+        if (numerodeCuenta !== "") {
+            metodoDePago = true;
+        } else {
+            metodoDePago = false;
+        }
+    }
 }
 
 
@@ -113,24 +132,99 @@ document.addEventListener("DOMContentLoaded", function (e) {
             displayRadioValue()
 
 
-            /* document.getElementById("goldradio").addEventListener("change", function(){
-                 porcentajeEnvio = 0.15;
-                 document.getElementById("costoenvio").innerHTML = "UYU " + (ele[i].value / 100) * subtotal ;
-                 document.getElementById("costototal").innerHTML = moneda + " " + (subtotal + porcentajeenvio);
-             });
-             
-             document.getElementById("premiumradio").addEventListener("change", function(){
-                 porcentajeEnvio = 0.07;
-                 document.getElementById("costototal").innerHTML = moneda + " " + (subtotal + porcentajeenvio);
-             });
-         
-             document.getElementById("standardradio").addEventListener("change", function(){
-                 porcentajeEnvio = 0.05;
-                 document.getElementById("costototal").innerHTML = moneda + " " + (subtotal + porcentajeenvio);
-             });*/
-
 
         }
+        //Se obtiene el formulario de compra de producto
+        var buyForm = document.getElementById("buy-info");
+
+        //Se agrega una escucha en el evento 'submit' que será
+        //lanzado por el formulario cuando se seleccione 'Comprar'.
+        buyForm.addEventListener("submit", function (e) {
+
+            let direccionCalle = document.getElementById("calle");
+            let direccionNumero = document.getElementById("numerodecalle");
+            let direccionEsquina = document.getElementById("esquina");
+            let modoPago = document.getElementById("mododepago");
+
+            let infoMissing = false;
+
+            //Quito las clases que marcan como inválidos
+            direccionCalle.classList.remove('is-invalid');
+            direccionNumero.classList.remove('is-invalid');
+            direccionEsquina.classList.remove('is-invalid');
+            modoPago.classList.remove('is-invalid');
+
+            //Se realizan los controles necesarios,
+            //En este caso se controla que se haya ingresado el nombre y categoría.
+            //Consulto por el nombre de la calle
+            if (direccionCalle.value === "") {
+                direccionCalle.classList.add('is-invalid');
+                infoMissing = true;
+                document.getElementById("ocultarCalle").hidden = false;
+            }
+
+            //Consulto por el numero de direccion
+            if (direccionNumero.value === "") {
+                direccionNumero.classList.add('is-invalid');
+                infoMissing = true;
+                document.getElementById("ocultarNumero").hidden = false;
+            }
+
+            //Consulto por la esquina
+            if (direccionEsquina.value <= 0) {
+                direccionEsquina.classList.add('is-invalid');
+                infoMissing = true;
+                document.getElementById("ocultarEsquina").hidden = false;
+            }
+
+            //Consulto el metodo de pago
+            if (metodoDePago == false) {
+                modoPago.classList.add('is-invalid');
+                infoMissing = true;
+                document.getElementById("ocultarPago").hidden = false;
+            }
+
+
+
+            if (!infoMissing) {
+                //Aquí ingresa si pasó los controles, irá a enviar
+                //la solicitud para crear la publicación.
+
+                getJSONData(CART_BUY_URL).then(function (resultObj) {
+                    let msgToShowHTML = document.getElementById("resultSpan");
+                    let msgToShow = "";
+
+                    //Si la publicación fue exitosa, devolverá mensaje de éxito,
+                    //de lo contrario, devolverá mensaje de error.
+                    if (resultObj.status === 'ok') {
+                        msgToShow = resultObj.data.msg;
+                        document.getElementById("alertResult").classList.add('alert-success');
+
+                        document.getElementById("ocultarCalle").hidden = true;
+                        document.getElementById("ocultarNumero").hidden = true;
+                        document.getElementById("ocultarEsquina").hidden = true;
+                        document.getElementById("ocultarPago").hidden = true;
+                        document.getElementById("calle").value = "";
+                        document.getElementById("numerodecalle").value = "";
+                        document.getElementById("esquina").value = "";
+                    }
+                    else if (resultObj.status === 'error') {
+                        msgToShow = ERROR_MSG;
+                        document.getElementById("alertResult").classList.add('alert-danger');
+                    }
+
+                    msgToShowHTML.innerHTML = msgToShow;
+                    document.getElementById("alertResult").classList.add("show");
+                });
+
+
+            }
+
+            //Esto se debe realizar para prevenir que el formulario se envíe (comportamiento por defecto del navegador)
+            if (e.preventDefault) e.preventDefault();
+            return false;
+        });
+
 
     });
 
