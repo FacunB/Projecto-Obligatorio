@@ -1,20 +1,7 @@
 let moneda = "UYU";
-let porcentajeEnvio = 0.15;
 let metodoDePago = false;
 
-function updateTotalCosts() {
-    let unitProductCostHTML = document.getElementById("productCostText");
-    let comissionCostHTML = document.getElementById("comissionText");
-    let totalCostHTML = document.getElementById("totalCostText");
 
-    let unitCostToShow = MONEY_SYMBOL + productCost;
-    let comissionToShow = Math.round((comissionPercentage * 100)) + PERCENTAGE_SYMBOL;
-    let totalCostToShow = MONEY_SYMBOL + (Math.round(productCost * comissionPercentage * 100) / 100);
-
-    unitProductCostHTML.innerHTML = unitCostToShow;
-    comissionCostHTML.innerHTML = comissionToShow;
-    totalCostHTML.innerHTML = totalCostToShow;
-}
 
 //Funcion para ver si los metodos de pago estan piola
 function checkMethod() {
@@ -57,7 +44,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
                       <td>`+ cosas.name + `</th>
                       <td id="costo-`+ i + `">` + moneda + " " + (cosas.unitCost * 40) + `</th>
                       <td><input style="width: 5em;" type="number" class="form-control" id="cantidad-`+ i + `" placeholder="" required="" value="` + cosas.count + `" min="0"></th>
-                      <td>`+ moneda + " " + `<span id="subtotal-` + i + `">` + (cosas.unitCost * 40) * cosas.count + `</span></th>
+                      <td>`+ moneda + " " + `<span id="subtotal-` + i + `">` + (cosas.unitCost * 40) * cosas.count + `</span></th>  
+                      <td><input type="button" class="remove-item" value="X" /> </th>                    
                     </tr>
                    </tbody> `
                 } else {
@@ -68,6 +56,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
                    <td id="costo-`+ i + `">` + moneda + " " + cosas.unitCost + `</th>
                    <td><input style="width: 5em;" type="number" class="form-control" id="cantidad-`+ i + `" placeholder="" required="" value="` + cosas.count + `" min="0"></th>
                    <td>`+ moneda + " " + `<span id="subtotal-` + i + `">` + cosas.unitCost * cosas.count + `</span></th>
+                   <td><input type="button" class="remove-item" value="X" /> </th>
                  </tr>
                 </tbody>    
                  `
@@ -77,13 +66,16 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
             }
             document.getElementById("tabla").innerHTML = htmlContentToAppend;
+            
+            $('#tabla').on('click','.remove-item',function(){
+                $(this).closest('tr').remove();// Borra el tr mas cercano en la linea
+                
+                
+            });
 
             let cantidad0 = document.getElementById("cantidad-0").value;
             let cantidad1 = document.getElementById("cantidad-1").value;
-            let subtotal0 = document.getElementById("subtotal-0").value;
-            let subtotal1 = document.getElementById("subtotal-1").value;
-            let tipodeenvio = document.getElementsByName('descuento').value;
-
+            
             //document.getElementById("subtotal").innerHTML = (subtotal0 + subtotal1);
             // document.getElementById("costosubtotal").innerHTML = moneda + (subtotal0 + subtotal1);
 

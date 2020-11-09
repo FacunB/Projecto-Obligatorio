@@ -43,13 +43,78 @@
       <a class="py-2 d-none d-md-inline-block" id="usuario"></a>
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 7 (Fecha de entrega: 8/11/202020) -> Punto 1 y 2.</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+  <div class="container">
+    <div class="text-center" style="padding: 15px;">
+      <H1>Mi Perfil</H1>
     </div>
+
+    <!--<div class="row" >
+      <div class="col-md-6 mb-3">
+      <a  href="https://ibb.co/P6VtmpG"><img  src="https://i.ibb.co/yQxVfTF/biteljus.jpg" alt="biteljus" width="50%" border="0" id="imagenPerfil"></a>
+    </div>
+    </div>-->
+    <figure >
+      <img crossOrigin = Anonymous id="imagenPerfil" src="about:blank" alt="" >
+      <noscript>
+          <img crossOrigin = Anonymous src="https://i.ibb.co/yQxVfTF/biteljus.jpg" alt="" >
+      </noscript>    
+      
+  </figure>
+    <form id="form" class="needs-validation" >
+      
+       <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="primerNombre">Primer Nombre*
+            <input class="form-control" type="text" name="primerNombre" id="primerNombre" >
+          </label>
+          <p hidden id="ocultarNombre">Complete este campo</p>
+         </div>
+         <div class="col-md-6 mb-3">
+          <label for="segundoNombre">Segundo Nombre  
+            <input type="text" name="segundoNombre" id="segundoNombre" class="form-control">        
+          </label>
+          
+        </div>
+       </div>        
+      
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="primerApellido">Primer Apellido*    
+            <input type="text" name="primerApellido" id="primerApellido"  class="form-control">    
+          </label>  
+          <p hidden id="ocultarApellido">Complete este campo</p>        
+        </div>        
+        <div class="col-md-6 mb-3">
+          <label for="segundoApellido">Segundo Apellido
+            <input type="text" name="segundoApellido" id="segundoApellido" class="form-control">
+          </label>
+        </div>
+      </div>
+      
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="correo">Correo Electrónico
+          <input type="text" name="correo" id="correo"  class="form-control">
+        </label>
+        <p hidden id="ocultarCorreo">Complete este campo</p>
+      </div>
+      
+      <div class="col-md-6 mb-3">
+        <label for="edad">Edad
+          <input type="text" name="edad" id="edad" required class="form-control" >
+        </label>
+        <p hidden id="ocultarEdad">Complete este campo</p>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="contacto">Teléfono de Contacto
+          <input type="text" name="contacto" id="contacto" required class="form-control">
+        </label>
+        <p hidden id="ocultarContacto">Complete este campo</p>
+      </div>
+    </div>
+      
+      <input type="submit" value="Guardar">
+    </form>
   </div>
   <footer class="text-muted bg-light">
     <div class="container">
@@ -57,12 +122,13 @@
       <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
     </div>
   </footer>
-  <div class="alert fade alert-success" role="alert" id="alertResult">
+  <div class="alert fade" role="alert" id="alertResult">
     <span id="resultSpan"></span>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
+        <span aria-hidden="true">&times;</span>
     </button>
-  </div>
+</div>
+  
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>

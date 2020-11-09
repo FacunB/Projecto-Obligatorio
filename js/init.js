@@ -47,18 +47,19 @@ const usernav = document.getElementById('usuario');
 let username = JSON.parse(localStorage.getItem('user'));
 
 if (username != null){
-    usernav.innerHTML = `<div class="dropdown">
-    <button id="usuario" class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    usernav.innerHTML = `<div class="dropdown" >
+    <button class="btn btn-secondary dropdown-toggle dropbtn" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     `+username[0].usuario +`
     </button>
   
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-      <a class="dropdown-item" href="cart.html">Ver mi carrito</a>
-      <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
+    <div class="dropdown-content" aria-labelledby="dropdownMenuLink">
+      <a  href="cart.html">Ver mi carrito</a>
+      <a  href="my-profile.html">Mi perfil</a>
       <div class="dropdown-divider"></div>
-      <a id="cerrar" class="dropdown-item" href="#">Cerrar sesión</a>
+      <a id="cerrar"  href="#">Cerrar sesión</a>
     </div>
   </div>`;
+  
 } else {
     usernav.innerHTML = '<a href="index.html" id="usuario">Iniciar sesión</a>';
 }
@@ -73,3 +74,12 @@ close.addEventListener('click', function(){
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
 });
+
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
