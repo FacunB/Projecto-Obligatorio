@@ -1,0 +1,22 @@
+Obligatorio 1: 
+Petición de productos JSON y pantalla de Autenticación
+
+Obligatorio 2: 
+Filtro de productos por rango de precios, funciones de orden ascendente y descendente por precio y descendente en funcion de relevancia.
+Nombre del usuario en la barra de navegación
+Desafio: Buscador en tiempo real
+
+Obligatorio 3:
+Peticion de detalles de producto, y comentarios de producto.
+Controles graficos para envío de comentarios y puntuación.
+Desafio: Mostrar el comentario realizado con los demás
+
+Obligatorio 4:
+
+Obligatorio 5:
+
+Obligatorio 6:
+
+Obligatorio 7:
+
+Obligatorio 8:

@@ -6,6 +6,8 @@ var currentSortCriteria = undefined;
 var minCount = undefined;
 var maxCount = undefined;
 
+
+//Funcion para ordenar productos
 function sortProducts(criteria, array) {
     let result = [];
     if (criteria === ORDER_ASC_BY_COST) {
@@ -35,7 +37,7 @@ function sortProducts(criteria, array) {
 }
 
 
-
+//Funcion que muestra los productos traidos desde JSON
 function showProductsList() {
 
     let htmlContentToAppend = "";
@@ -68,7 +70,7 @@ function showProductsList() {
     }
 }
 
-
+//Funcion para mostrar y ordenar productos 
 function sortAndShowProducts(sortCriteria, productsArray) {
     currentSortCriteria = sortCriteria;
 
@@ -81,20 +83,11 @@ function sortAndShowProducts(sortCriteria, productsArray) {
     //Muestro las categorías ordenadas
     showProductsList();
 }
+
+
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
-//document.addEventListener("DOMContentLoaded", function(e){
-//   getJSONData(PRODUCTS_URL).then(function(resultObj){
-//      if (resultObj.status === "ok")
-//       {
-//          currentProductsArray = resultObj.data;
-//           //Muestro las categorías ordenadas
-//           showProductsList(currentProductsArray);
-//       }
-//   });
-//});
-
 document.addEventListener("DOMContentLoaded", function (e) {
     getJSONData(PRODUCTS_URL).then(function (resultObj) {
         if (resultObj.status === "ok") {
